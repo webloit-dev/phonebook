@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="/hostaway/asset/css/bootstrap.min.css" >
 
-<link rel="stylesheet" href="/hostaway/asset/css/font-awesome.min.css" >
+<link rel="stylesheet" href="/hostaway/asset/css/font-awesome/css/font-awesome.min.css" >
 
 <link href="/hostaway/asset/css/agabacss.css" rel="stylesheet"/>
 

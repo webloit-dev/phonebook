@@ -8,14 +8,13 @@
 
 <body>
  
-<div class="container">
-
-
 <?php
 require_once(doc."/view/component/menu.php");
 ?>
 
-<div class="row">
+<div class="container">
+
+<div class="row top-row">
 
 
 <div class='col-md-12 col-lg-12 col-sm-12 '>
@@ -45,20 +44,6 @@ require_once(doc."/view/component/menu.php");
                         </select>
                 </div>
                 
-                <div class="input-group form-group input-lg mb-3">
-                
-	                  <div class="input-group-append">
-                        <span class="input-group-text bg-dark text-light">+</span>
-                    </div>
-                    
-                    <input type="number" name="isd" value="<?php if(!empty($result)){ echo json_decode($result[0]['data'])->isd_code;}?>" id="isd" class="form-control form-control-lg" required="required" placeholder="ISD code" />
-                </div>
-                <details>
-                    <summary>What is ISD code?</summary>
-                        <span class="text-muted">International Subscriber Dialing (ISD) or International Direct Dialing (IDD) or simply ISD Code is defined as the country code to call a telephone or mobile subscriber directly from outside of the country or region and it is initiated by the International Call Prefix for the outgoing country, followed by the Country Calling code or ISD Code for the incoming Country, and finally the subscriber’s telephone or mobile number.
-                        Country codes are necessary to dial a telephone number or mobile number to another country or region. Country code should be dialed first before the national telephone or mobile number.</span>
-                </details>
-                <br/>
                 <div class="form-group "> 
                     <label>Phone Number<span style="color:red;">*</span></label>
                         <input type="number" class="form-control form-control-lg signup-field" value="<?php if(!empty($result)){ echo json_decode($result[0]['data'])->phone;} ?>" autocomplete id="phone" name="phone" data-name="phone number"/>
@@ -76,8 +61,15 @@ require_once(doc."/view/component/menu.php");
                             ?>
                         </select>
                 </div>
+
+                <?php
+                if(!empty($result))
+                {
+                    echo "<input type='hidden' name='id' value='$id' required/>";
+                }
+                ?>
 	
-                <input class="btn btn-block btn-primary btn-lg"  type="submit" value="Add To Phonebook" id="sub"/>
+                <input class="btn btn-block btn-primary btn-lg"  type="submit" value="<?php if(!empty($result)){ echo "Update Phonebook";}else{ echo "Add To Phonebook";} ?>" id="sub"/>
             </fieldset>
         </form>
  

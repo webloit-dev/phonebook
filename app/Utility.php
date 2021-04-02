@@ -467,7 +467,7 @@ class Utility
 				$body = json_decode($response->getBody())->result;
 
 				$object = json_decode(json_encode($body), true);
-//echo $timezone;
+
 				foreach($object as $obj)
 				{
 				    if($obj['diff'] == $timezone)
@@ -505,6 +505,41 @@ class Utility
 			exit;
 		}
 	}
+
+	//We validate the phone number to make sure it is correct
+	public function ValidatePhoneNumber($phone, $country_code="NGN")
+	{
+		$phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        try 
+		{
+			$phoneNumber = $phoneUtil->parse($phone, strtoupper($country_code));
+
+			//return the ISD code
+			$isd_code = accessProtected($phoneNumber, "countryCode");
+
+			//The user may have appended the country code to the phone number. We remove it and extract just the phone number itself
+			$phone_number = accessProtected($phoneNumber, "nationalNumber");
+
+			$result = ["phone"=>$phone_number, "isd"=>$isd_code];
+
+			return $result;
+        } 
+		catch (\libphonenumber\NumberParseException $e) 
+		{
+			$msg = accessProtected($e, "message");
+
+			$this->ajax("<p class='alert alert-danger'>$msg</p>");
+			//var_dump($e);
+	    }
+/*
+		if((strlen($phone) > 15) or (strlen($phone) < 7))
+		{
+			$this->ajax("<p class='alert alert-danger'>Phone number is not valid.</p>", $return=false);
+		}
+		*/
+	}
+	
+
 		
 }
 ?>

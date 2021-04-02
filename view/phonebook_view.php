@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Create Phonebook</title>
+<title>Phonebook</title>
 <?php require_once(doc."/view/component/css.php"); ?>
 
 </head>
 
 <body>
- 
-<div class="container">
-
 
 <?php
 require_once(doc."/view/component/menu.php");
 ?>
+ 
+<div class="container">
 
-<div class="row">
+
+
+<div class="row top-row">
+
 
 
 <div class='col-md-12 col-lg-12 col-sm-12 '>
-<div class="homepage-search-form-parent align-middle " >
-      <div class="input-group form-group input-lg mb-3">
-        <div class="input-group-append">
-          <a class=" btn btn-secondary go-back-from-searchbox" href="#"><i class="fas fa-arrow-left "></i></a>
-        </div>
-		    
-		    <form class="form-inline my-2 my-md-0 row search-form" id="search-form" method="get" action="/search/" role="search">
-            <input data-auto_complete="/controller/ajax_control/ajax_search_suggestions.php" autocomplete="off" type="search" name="search" class="form-control col-lg-12 search-box" <?php if(isset($_GET["search"])){ echo "value=".sanitize($_GET["search"])."";}?> id="search-box-lg" placeholder="Search Webloit"/>
-        </form>	
-				
-			</div>
-		</div>
 
-<a title="Give Coupon" class="nextPageViaAjaxOnly" href="/hostaway/url/register.php"><i style="float:right;" class="fas fa-pen bg-dark text-light btn fa-lg"></i></a>
+<nav class="navbar navbar-dark bg-dark sticky-top">
+  <form class="form-inline" method="get" action="<?php echo $_SERVER["PHP_SELF"]; ?>" role="search">
+    <input class="form-control mr-sm-2" name='value'
+    <?php
+    if(!empty($value))
+        echo "value='$value'";
+    ?>
+     type="search" placeholder="Search" aria-label="Search">
+  </form>
+
+  <li class="nav-item ml-4">
+  <a title="Create new contact" href="/hostaway/url/register.php"><i style="float:right;" class="fa fa-edit bg-light btn fa-lg"></i></a>
+      </li>
+</nav>
 
 <?php
 if(!empty($items))
@@ -41,45 +44,45 @@ if(!empty($items))
  {
 	 $sn = $offset + ($i + 1);
 	 
-	 echo "<div class='card'>
+	 echo "<div class='card' id='card-$sn'>
   
 <div class='list-group list-group-flush'>
 
   <div class='list-group-item d-flex w-100 justify-content-between'>
       <p class='mb-1 font-weight-bold'>Name:</p>
-      <p>".ucwords(json_decode($items[0]['name'])->first_name)." ". ucwords(json_decode($items[0]['name'])->last_name)."</p>
+      <p>".ucwords(json_decode($items[$i]['name'])->first_name)." ". ucwords(json_decode($items[$i]['name'])->last_name)."</p>
   </div>
   
   <div class='list-group-item d-flex w-100 justify-content-between'>
       <p class='mb-1 font-weight-bold'>Country:</p>
-      <p>".ucwords(json_decode($items[0]['data'])->country_name)."</p>
+      <p>".ucwords(json_decode($items[$i]['data'])->country_name)."</p>
   </div>
   
   <div class='list-group-item d-flex w-100 justify-content-between'>
-      <p class='mb-1 font-weight-bold'>Phone:</p>
-      <p>+".json_decode($items[0]['data'])->isd_code.json_decode($items[0]['data'])->phone."</p>
+      <p class='mb-1 font-weight-bold'>Phone Number:</p>
+      <p><a  class='text-primary' href='tel:07083218536'>".formatPhoneNumber(json_decode($items[$i]['data'])->phone, json_decode($items[$i]['data'])->country)."</a></p>
   </div>
   
   <div class='list-group-item d-flex w-100 justify-content-between'>
       <p class='mb-1 font-weight-bold'>Time Zone:</p>
-      <p>".json_decode($items[0]['data'])->timezone."</p>
+      <p>".json_decode($items[$i]['data'])->timezone."</p>
   </div>
   
   <div class='list-group-item d-flex w-100 justify-content-between'>
       <p class='mb-1 font-weight-bold'>Created On:</p>
-      <p>{$items[0]['inserted_on']}</p>
+      <p>{$items[$i]['inserted_on']}</p>
   </div>
   
   <div class='card-footer'>
       <div class='btn-group d-flex justify-content-center'>
-          <a class='btn btn-lg btn-primary' href='/hostaway/url/register.php?id={$items[$i]["id"]}#runBounty'>Update</a>
-		  <a class='btn btn-danger del' href='/controller/delete/delete_coupon.php?gid={$items[$i]["id"]}'>Remove</a>
+          <a class='btn btn-lg btn-primary' href='/hostaway/url/register.php?id={$items[$i]["id"]}'>Update</a>
+		  <a class='btn btn-danger del' data-clear='yes' data-parentid='card-$sn' href='/hostaway/controller/delete_phonebook.php?id={$items[$i]["id"]}'>Remove</a>
       </div>
   </div>
   
   
  </div>
-</div>";
+</div><hr/>";
 	 
  }
  

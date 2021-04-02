@@ -2,11 +2,11 @@
   <div class="collapse navbar-collapse" id="navbarsExample01">
     <ul class="navbar-nav mr-auto homepage-top-menu">
       <li class="nav-item ml-4">
-        <a style="color:black;" class='nav-horizontal-list' role="menuitem" tabindex="-1" href="/hostaway/url/phonebook.php">Phone Book<i class="fas fa-bookmark "></i></a>
+        <a style="color:black;" class='nav-horizontal-list' role="menuitem" tabindex="-1" href="/hostaway/">Phone Book<i class="fa fa-bookmark "></i></a>
       </li>
 
 		  <li class="nav-item ml-4">
-        <a style="color:black;" class='nav-horizontal-list' role="menuitem" tabindex="-1" href="/hostaway/url/register.php">New<i class="fas fa-edit"></i></a>
+        <a style="color:black;" class='nav-horizontal-list' role="menuitem" tabindex="-1" href="/hostaway/url/register.php">New<i class="fa fa-edit"></i></a>
       </li>
 		  
     </ul>

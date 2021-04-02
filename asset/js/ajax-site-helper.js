@@ -1434,11 +1434,88 @@ $(document).on("click", ".ajax-redirect-link", (function(event){
 }))
 
 
-//No need having the back button displayed if it won't serve its purpose. This is for the "back" snippet button which is displayed on pages like the FAQ, About us, etc. This happens if the page was opened as an external page.
-if(history.length <= 1)
-{
-	$(document).find(".back-btn-parent").remove();
-}
+//function to run when user attempts to delete.
+$(document).on("click", "a.del", function(event){ 
+    event.preventDefault();
+	
+    var ask = confirm("Are you sure you want to do this?");
+	if(ask == false)
+	{
+		return;
+	}
+    else
+	{
+		$(document).find("#myModal").modal('hide');
+		
+		var this_button = $(this);
+		var url = this_button.attr("href");
+		var parent_element = this_button.parent().parent();
+		
+		var original_text = this_button.text();
+		
+		var loading_text = $(this).data("text") || "deleting";
+		
+		var parentid = this_button.data("parentid");
+		
+		var cmd = $(this).data("clear");
+		
+		$.ajax({url:url, 
+		           type:"GET",
+				   beforeSend:function(){
+					    this_button.text(loading_text);
+
+				   },
+				   complete:function(){
+					   this_button.text(original_text);
+				   },
+				   success:function(data){
+					   if(data != false)
+			           {
+						   try
+						   {
+							   var response = $.parseJSON(data);
+						       $(document).find('.close').trigger("click");
+						   
+							   var row = $(document).find("div.row").eq(0);
+						   
+					           $("<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'> <div class='modal-dialog'> <div class='modal-content'> <div class='modal-header'> <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>× </button> </div> <div class='modal-body'><p>"+response["msg"]+"</p> </div> </div></div></div>").prependTo(row);
+							   
+							   $(document).find('#myModal').modal('show');
+							   
+				               if(response["status"] == true)
+				               {
+							       console.log(cmd);
+							   
+							       if(cmd !== "no")
+							       {
+									   if(parentid != "")
+									   {
+										   $(document).find("#"+parentid).empty();
+									   }
+									   else
+									   {
+										   parent_element.remove();	
+									   }
+							       }   
+				   
+								   
+								   if(response["reload"] == true)
+								   {
+									   setTimeout(function(){
+										   location.reload();
+									   }, 1000);
+								   };
+						       };
+						   }
+						   catch(e)
+						   {
+							   console.log("nothing sha");
+						   };
+			           };
+				   },
+	              });
+	};
+});
 	 
 });
 

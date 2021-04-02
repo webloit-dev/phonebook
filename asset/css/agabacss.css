@@ -79,7 +79,7 @@ div.goods-text{margin-right:auto; margin-left:auto; font-weight:bold; color:#00F
 /* This style is invoked on the page that involves checking the details of a good in the main homepage via the carousel. */
 .space-details{position:relative; left:20px;  word-break:break-strict;}
 
-.top-row{margin-top:100px;}
+.top-row{margin-top:30px;}
 
 a.disabled-link{pointer-events:none;cursor:default;}
 

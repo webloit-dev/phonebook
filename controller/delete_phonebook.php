@@ -8,30 +8,37 @@ use App\Utility;
 use App\HostAway;
 //==========================================================================================================================
 
+$utility = new Utility();
+
+$errormsg = "<p class='alert alert-danger'>Unknown request</p>";
+$id = $utility->get(["name"=>"id", 'type'=>'get', "invalid"=>$errormsg]);
+
 $db = new HostAway("mysqli");
 
  ////////////////////////////////////////// The table(s) we'll work with in this script /////////////////////////////////////////////////////
  $phonebook = cred($index='tables', $key='phonebook');//$db->get_value($table_name="phonebook");
  ///////////////////////////////////////////////// END OF TABLE(s) /////////////////////////////////////////////////////////////////////////
- 
- $currentpage = $db->get_page();
-		
- //Page 1 will be 0-9;
- //Page 2 will be 10-19;
- //:. Offset = (current_page - 1) * limit.
- $limit = 15;
- $offset = ($currentpage - 1) * $limit;
 
-$query = "SELECT * FROM $phonebook GROUP BY id ORDER BY id DESC";
+//FIrst of all, we check if a record exists since this is an "update" request
+$query = "SELECT data FROM $phonebook WHERE id = ?";
 
-$items = $db->register($query, true);
-//var_dump($items[1]);exit;	
-//For the purpose of pagination
-$count_query = "select count(distinct id) as count from $phonebook ";
+$result = $db->prepare($query, [$id], true);
 
-$rows = $db->register($count_query, true);
-	
-$num_of_rows = $rows[0]["count"];
+if(empty($result))
+{
+    $utility->ajax("<p class='alert alert-danger'>No phone entry found.</p>", $return=false);
+}
+else
+{
+    $query = "DELETE FROM $phonebook WHERE id = ?";
 
- require_once(doc."/view/phonebook_view.php"); 
+    $db->prepare($query, [$id]);
+}
+
+$data["status"] = true;
+$data["reload"] = false;
+$data["msg"] = "Phone entry was successfully deleted";
+
+$utility->ajax($data);
+
 ?>

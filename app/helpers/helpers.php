@@ -580,5 +580,36 @@ function cred($index='', $key='')
 	return $content;
 }
 
+function formatPhoneNumber($phone, $country_code="NGN") 
+{
+    $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+    try 
+	{
+		$phoneNumber = $phoneUtil->parse($phone, strtoupper($country_code));
+
+			
+		$formattedPhoneNumber =  $phoneUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
+
+		return $formattedPhoneNumber;
+			//echo $phoneUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::E164);
+			//var_dump($phoneUtil->isValidNumber($phoneNumber));
+            //var_dump($phoneNumber);
+			//exit;
+    } 
+	catch (\libphonenumber\NumberParseException $e) 
+	{
+		var_dump($e);
+	}
+
+    
+}
+
+function accessProtected($obj, $prop) {
+	$reflection = new ReflectionClass($obj);
+	$property = $reflection->getProperty($prop);
+	$property->setAccessible(true);
+	return $property->getValue($obj);
+  }
+
 ?>
 		 

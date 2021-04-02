@@ -410,7 +410,7 @@ class HostAway
 
 
 
-        function multi_queries($query,$bool=false)
+        public function multi_queries($query,$bool=false)
 		{
 			//Multi-query doesn't work if a single query is in progress or has been used previously in the same connection context. To remediate this issue we have to close the global connection each time this function is called and then reopen the connection just incase the script isn't done using the connection.
 			if(!empty($this->mysqli))
@@ -458,6 +458,34 @@ class HostAway
 				echo $this->error_msg;
 				exit;
 			}
+		}
+
+        //Phone Numbers must be unique. If we encounter a number that already exists we stop execution of this script.
+		public function CheckPhoneNumber($phone, $id="")
+		{
+			////////////////////////////////////////// The table(s) we'll work with in this script /////////////////////////////////////////////
+            $phonebook = cred($index='tables', $key='phonebook');//$db->get_value($table_name="phonebook");
+            ///////////////////////////////////////////////// END OF TABLE(s) //////////////////////////////////////////////////////////////////
+
+			$param = [$phone];
+
+			if(empty($id))
+			{
+				$query = "SELECT JSON_EXTRACT(data, '$.phone') AS phone FROM $phonebook WHERE JSON_EXTRACT(data, '$.phone') = ?";
+			}
+			else
+			{
+				$query = "SELECT JSON_EXTRACT(data, '$.phone') AS phone FROM $phonebook WHERE JSON_EXTRACT(data, '$.phone') = ? AND id != ?";
+
+				$param []= $id;
+			}
+
+            $result = $this->prepare($query, $param, true);
+
+            if(!empty($result))
+			{
+				(new Utility())->ajax("<p class='alert alert-danger'>Phone number already exists.</p>", $return=false);
+            }
 		}
 }
 ?>
