@@ -1,0 +1,15 @@
+{
+"database":[{
+  "engine":"pdo",
+  "db_server":"localhost",
+  "username":"root",
+  "db_password":"rkHxkGqZiQ9bQpZJ",
+  "databasename":"telco"
+  }],
+"tables":[{
+    "phonebook" : "phonebook"
+}],
+"auth":[{
+  "encryption_key":"c599634a5988e37ec2b544c05e3707622b7883bfcbcbac2b936eeb78b67b686363332c223e75549f"
+  }]
+}

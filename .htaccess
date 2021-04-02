@@ -1,0 +1,42 @@
+#AuthType Basic 
+#AuthName "Restricted web page"
+#AuthUserFile "C:/xampp/.htpasswd
+#require valid-user
+
+#<FilesMatch "\.(ini|php|html|js)$">
+#Order, allow, deny
+#Deny from allow
+#</FilesMatch>
+
+#Options -Indexes
+IndexIgnore *
+
+RewriteEngine on
+
+Header set Access-Control-Allow-Origin 'http://localhost'
+
+#rule to rewrite url of the product details page. That page that is called when User needs to view more details of a particular product.
+RewriteRule ^bounties/promo/products/ /bounties/ [NC,L]
+RewriteRule ^bounties/promo/products/([\d]+)$ /bounties/?page=$1 [NC,L]
+
+<IfModule mod_deflate.c>
+
+AddOutputFilterByType DEFLATE text/plain
+
+AddOutputFilterByType DEFLATE text/html
+
+AddOutputFilterByType DEFLATE text/xml
+
+AddOutputFilterByType DEFLATE text/css
+
+AddOutputFilterByType DEFLATE application/xml
+
+AddOutputFilterByType DEFLATE application/xhtml+xml
+
+AddOutputFilterByType DEFLATE application/rss+xml
+
+AddOutputFilterByType DEFLATE application/javascript
+
+AddOutputFilterByType DEFLATE application/x-javascript
+
+</IfModule>

@@ -1,0 +1,20 @@
+{
+    "name": "sirmekus/hostaway",
+    "authors": [
+        {
+            "name": "SirMekus",
+            "email": "mekus600@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "7.0"
+    },
+	"autoload": {
+	     "files": [
+                   "app/helpers/helpers.php"
+                  ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

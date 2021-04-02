@@ -1,0 +1,90 @@
+
+.margin-to-divide-contents{margin-top:40px; padding-top:30px;}
+
+
+/* Container for all the contents in the site except the navigation */
+div.body{margin-top:60px; padding-top:20px;}
+
+.homepage-side-menu-style-for-mobile-screens{background-color:#19222E; position:absolute; width:250px; left:5px; z-index:10; height:800px;
+margin-bottom:20px; overflow:scroll; border-right:thick solid gray;}
+
+
+/* for aligning the menu icons to the right */
+ul.menu-nav{list-style-type:none; display:inline;}
+div.container-for-nav{background:linear-gradient(left,red,blue); margin-top:0px;  line-height:30px; width:100%; display:box;}
+
+
+/* Hides childlists/sublists by default */
+.child-lists{display:none; position:absolute;}
+
+
+.child-lists >  li a{display:block; text-decoration:none; margin-top:5px; border-radius:10px; border:solid;}
+.child-lists >  li  a:hover{box-shadow: 3px 4px 5px rgba(0,0,0,.5);}
+button.nav-horizontal-list:hover .child-lists{display:block;}
+button.nav-horizontal-list:hover{box-shadow: 3px 4px 5px rgba(0,0,0,.5);}
+button.nav-horizontal-list a.anchor-parent-for-nav{text-decoration:none; border-radius:10px; border:solid; color:#BDB76B;}
+
+
+p{line-height:40px;font-size:20px; color:black;}
+
+
+/*This styles jumbotrons themselves */
+.style-for-headers-jumbotron{background-color:#0d85f0;}
+
+
+			
+/*Actual menu that includes the options such as loggin in, etc found in the top page background-color:#efbb1a;*/
+.menu-items{background-image:linear-gradient(75deg, #b3b6b7, #d7dbdd 33%,  #b2babb 66%, #85929e 40%, #cbc91a);
+                    background-image:-moz-linear-gradient(75deg, #b3b6b7, #d7dbdd 33%,  #b2babb 66%, #85929e 40%, #cbc91a);    
+					background-image:-webkit-linear-gradient(75deg, #b3b6b7, #d7dbdd 33%,  #b2babb 66%, #85929e 40%, #cbc91a);} 
+
+
+
+/*This is to style inside the message box */
+.chat-box{height: -moz-calc(100% - 35px); height: -webkit-calc(100% - 35px); height: calc(100% - 35px); word-break:break-all; overflow:scroll; padding: 10px;  -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; background-color:#EFFFEC; }
+			 
+
+.overflown-chat-box{padding: 10px; -moz-box-sizing:border-box; overflow:scroll; -webkit-box-sizing:border-box; box-sizing:border-box; background-color:#EFFFEC;  height:400px; word-break:break-all;  }
+			 
+
+
+/* for the footer */
+.footer{background-color:gray; display:block;  }
+
+a.footer-contents{color:black; font-size:18px;}
+
+
+
+/* For styling the headers especially those inside jumbotrons that are generally large #707b7c*/  
+.headers-style{font-family:"sans-serif"; transform:scaleZ(0.75); -webkit-box-shadow: 0 5px 7px rgba(0,0,0,.5); 
+box-shadow:0 5px 7px rgba(0,0,0,.5); color:white; background-color:#839192; text-align:center; }
+
+
+/* This styles subheadings like those of: "category","ads", etc. */
+.specific-section-header{font-family:"sans-serif"; transform:scaleZ(0.75); font-size:x-large; font-weight:bold; color:black;  }
+
+
+.style-for-top-menu-areas-in-main-pages{background-color:#0d85f0; background-position:0% 80%; opacity:0.85; background-image: url("/uploads/for_site/webloit_logo.gif"); background-repeat:no-repeat; background-size:30%;  } 
+
+
+
+.bread-crumb-div{background-color:gray; border-radius:8px; height:5px; width:18px; position:relative;  z-index:40px; }
+
+
+
+/* For styling the texts inside the carousel; the price and the name of the good being viewed. #00FFFF*/
+div.goods-text{margin-right:auto; margin-left:auto; font-weight:bold; color:#00FFFF; margin-top:40px; padding-top:10px; }
+
+
+/* This style is invoked on the page that involves checking the details of a good in the main homepage via the carousel. */
+.space-details{position:relative; left:20px;  word-break:break-strict;}
+
+.top-row{margin-top:100px;}
+
+a.disabled-link{pointer-events:none;cursor:default;}
+
+canvas{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}

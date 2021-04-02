@@ -1,0 +1,92 @@
+
+.site-details-header{margin-top:50px;}
+
+.enumeration-list-for-us{list-style-type:upper-roman; list-style-position:outside; font-size:large;}
+
+.select-photo{margin-top:30px; margin-left:120px;}
+
+
+.preview-container{ border-radius:25px 25px 25px 25px; border:thick ridge #b2babb; position:relative;}
+
+.preview-style-on-bigger-screens{float:left; height:505px; width:550px;}
+
+.overflown-text{width:350px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; position:relative;}
+
+@media only screen and (max-width: 760px){
+	.overflown-text {
+		width:166.5px;
+	}
+	
+	img.media-object{
+		width:64px;
+		height:64px;
+	}
+}
+
+/* left: 50%; top: 50%; height:60px; width:60px; margin:0px auto; position: relative; z-index:1000; */
+
+
+.dual-ring-rotate{display:inline-block; left: 50%; top: 50%; width:64px; height:64px; margin:0px auto; position: relative;}
+.dual-ring-rotate:after{content:" "; display:block; width:46px; height:46px; margin:1px; border-radius:50%; border:5px solid black; border-color:black transparent black transparent; animation:dual-ring-rotate 1.2s linear infinite}
+
+@keyframes dual-ring-rotate{0%{transform;rotate(0deg);}
+100%{transform:rotate(360deg);}}
+
+
+/*The dashboard menu style */
+.default-style-for-side-menu{background-color:#e5e7e9; height:800px; width:250px; overflow:scroll; border-right:thick solid gray;}
+
+
+/*This style is applied only in the anchor tags in the dashboard or elsewhere and is hovered upon */
+a.dashboard-anchor-tags:hover{text-decoration:none;  color:black; box-shadow:7px 12px 5px rgba(0,0,0,0.4);}
+
+a.dashboard-anchor-tags{display:block; font-size:20px; width:160px; margin-left:20px; text-decoration:none; margin-top:15px; color:black; }
+
+
+/*This is applied on all dahboard anchor tags in the menu area on mobile devices */
+@media screen and (max-width:767px){
+a.dashboard-anchor-tags{font-size:17px; width:180px; text-decoration:none; margin-bottom:15px; color:black; }
+}
+
+/*When you click on a parent menu that has sub menus, this is the style for that sub menu. */
+.sub-lists-of-menu-profile{position:relative; display:none; margin-left:25px;  }
+
+a.profile-menu{display:block; text-decoration:none; font-size:15px; color:black; border-radius:5px;}
+
+
+/*This style is to be used by the body element to blur its DOM contents during an ajax call. It is invoked by javascript.*/
+.opaque-body-during-ajax-call{opacity:0.5;}
+
+/*This style is to be used by for indicating that an ajax call is in progress and will be displayed. It is hiden by default. */
+.ajax-indicator{position:absolute; right:600px; top:500px; z-index:40; opacity:1.0; display:none;}
+
+
+li.desc{font-size:large;}
+.value{font-size:medium;}
+
+
+.jumbotron-head{transform: translate(100px, 0px);         
+                -webkit-transform: translate(100px, 0px);      
+                -ms-transform: translate(100px, 0px);}
+				
+
+fieldset{background-color: #e5e7e9 ;}
+
+
+/*.hidden{display:hidden;}*/
+.hidden{visibility:none;}
+
+/*The iframe that is used for the html editing of the site. */
+.iframe{width:100%; height:100%; border-radius:30px; display:block; word-wrap:break-word;}
+
+
+/*It highlights the icon/indicator currently activated in the editor area */ 
+.editor-activated{background-color:#F08080;}
+
+/*Refers to the child fonts in our html editor which is meant to be hidden by default */
+ul.child{display:none;}
+
+/*Still refers to the child fonts in our html editor. We wanna arange the positioning so it'll be aligned directly under its parent. */
+ul.child-html-editor{left:-3em; list-style:none; position:relative; z-index:10;}
+
+ul.ul-for-html-editor{display:inline;}
